@@ -4,4 +4,6 @@ tracked_coins = [coin.rstrip() for coin in open(sys.path[0] + '/tracked_crypto.t
 
 for coin_info in json.load(sys.stdin):
     if coin_info['symbol'] in tracked_coins:
-        print(coin_info['symbol'] + ': ' + coin_info['price_usd'])
+        print(coin_info['symbol'] + ': ' + coin_info['price_usd'] + \
+              " (1h change: " + coin_info['percent_change_1h'] + \
+              "%, 24h change: " + coin_info['percent_change_24h'] + "%)")
