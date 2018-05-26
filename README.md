@@ -1,7 +1,7 @@
 # Crypto-Checker
-Simple shell and python scripts to check price for selected portfolio from CoinMarketCap. Requires curl.
+Python script to check price for selected portfolio from CoinMarketCap. Requires requests.
 
-To use, first download the requests package for python. Then, edit config.json so that it contains the symbols of the coins in your portfolio in 'tracked_coins' (eg. BTC, ETH), and your desired currency in 'currency'.
+To use, edit config.json so that it contains the symbols of the coins in your portfolio in 'tracked_coins' (eg. BTC, ETH), and your desired currency in 'currency'.
 
 Valid fiat currency values are: "AUD", "BRL", "CAD", "CHF", "CLP", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PKR", "PLN", "RUB", "SEK", "SGD", "THB", "TRY", "TWD", "ZAR"
  
