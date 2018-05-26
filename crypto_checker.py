@@ -17,9 +17,11 @@ with open(path.join(path.dirname(path.realpath(__file__)), 'config.json'), 'r') 
 tracked_coins = set(config['tracked_coins'])
 currency = config['currency']
 
-r = requests.get('https://api.coinmarketcap.com/v2/ticker/?convert={}'.format(currency), timeout=5)
+r = requests.get('https://api.coinmarketcap.com/v2/ticker/?convert={}'.format(currency), timeout=10)
 
 if r.status_code == 200:
     data = r.json()['data']
     for coin_index in data:
         check_coin(data[coin_index])
+else:
+    print('Unable to get information.')
