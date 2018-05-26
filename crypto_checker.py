@@ -1,9 +1,25 @@
-import sys, json
+import sys, json, requests
+from os import path
 
-tracked_coins = [coin.rstrip() for coin in open(sys.path[0] + '/tracked_crypto.txt')]
+def format_string(num):
+    return str(round(num, 2))
 
-for coin_info in json.load(sys.stdin):
+def check_coin(coin_info):
     if coin_info['symbol'] in tracked_coins:
-        print(coin_info['name'] + ': US$' + coin_info['price_usd'] + \
-              " (1h change: " + coin_info['percent_change_1h'] + \
-              "%, 24h change: " + coin_info['percent_change_24h'] + "%)")
+	currency_info = coin_info['quotes'][currency]
+        print(coin_info['name'] + ': $' + format_string(currency_info['price']) + \
+              " (1h change: " + format_string(currency_info['percent_change_1h']) + \
+              "%, 24h change: " + format_string(currency_info['percent_change_24h']) + "%)")
+
+with open(path.join(path.dirname(path.realpath(__file__)), 'config.json'), 'r') as fp:
+    config = json.load(fp)
+
+tracked_coins = set(config['tracked_coins'])
+currency = config['currency']
+
+r = requests.get('https://api.coinmarketcap.com/v2/ticker/?convert={}'.format(currency), timeout=5)
+
+if r.status_code == 200:
+    data = r.json()['data']
+    for coin_index in data:
+        check_coin(data[coin_index])
