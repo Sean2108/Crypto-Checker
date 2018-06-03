@@ -7,9 +7,8 @@ def format_string(num):
 def check_coin(coin_info):
     if coin_info['symbol'] in tracked_coins:
 	currency_info = coin_info['quotes'][currency]
-        print(coin_info['name'] + ': $' + format_string(currency_info['price']) + \
-              " (1h change: " + format_string(currency_info['percent_change_1h']) + \
-              "%, 24h change: " + format_string(currency_info['percent_change_24h']) + "%)")
+        print('{}: {}${} (1h change: {}%, 24h change: {}%)'
+                .format(coin_info['name'], currency, format_string(currency_info['price']), format_string(currency_info['percent_change_1h']), currency_info['percent_change_24h']))
 
 with open(path.join(path.dirname(path.realpath(__file__)), 'config.json'), 'r') as fp:
     config = json.load(fp)
