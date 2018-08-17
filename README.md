@@ -5,7 +5,7 @@ To use, edit config.json so that it contains the symbols of the coins in your po
 
 Valid fiat currency values are: "AUD", "BRL", "CAD", "CHF", "CLP", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PKR", "PLN", "RUB", "SEK", "SGD", "THB", "TRY", "TWD", "ZAR"
  
-Valid cryptocurrency values are: "BTC", "ETH" "XRP", "LTC", and "BCH"
+Valid cryptocurrency values include: "BTC", "ETH" "XRP", "LTC", "BCH"
 
 Then, place the 3 files in the same directory and add the following line to your .bashrc:
 
