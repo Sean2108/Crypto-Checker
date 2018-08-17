@@ -10,11 +10,19 @@ def check_coin(coin_info):
         print('{}: {}${} (1h change: {}%, 24h change: {}%)'
                 .format(coin_info['name'], currency, format_string(currency_info['price']), format_string(currency_info['percent_change_1h']), currency_info['percent_change_24h']))
 
-with open(path.join(path.dirname(path.realpath(__file__)), 'config.json'), 'r') as fp:
-    config = json.load(fp)
+try:
+    with open(path.join(path.dirname(path.realpath(__file__)), 'config.json'), 'r') as fp:
+        config = json.load(fp)
+except EnvironmentError:
+    print('Config file not found')
+    sys.exit()
 
-tracked_coins = set(config['tracked_coins'])
-currency = config['currency']
+try:
+    tracked_coins = set(config['tracked_coins'])
+    currency = config['currency']
+except KeyError:
+    print('Config.json should have \"tracked_coins\" and \"currency\" attributes')
+    sys.exit()
 
 r = requests.get('https://api.coinmarketcap.com/v2/ticker/?convert={}'.format(currency), timeout=10)
 
@@ -23,4 +31,4 @@ if r.status_code == 200:
     for coin_index in data:
         check_coin(data[coin_index])
 else:
-    print('Unable to get information.')
+    print('Error code {}: Unable to get information.'.format(r.status_code))
