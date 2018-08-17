@@ -70,7 +70,7 @@ class CryptoCheckerTest(unittest.TestCase):
         self.assertTrue(coins)
         self.assertTrue(currency)
 
-    def test_get_config_wrong_file_raises_error(self):
+    def test_get_config_wrong_file_returns_none(self):
         coins, currency = get_config('does_not_exist.json')
         self.assertFalse(coins)
         self.assertFalse(currency)
