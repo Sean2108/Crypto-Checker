@@ -25,6 +25,9 @@ def main():
     if r.status_code == 200:
         coin_dict = dict([(coin_info['symbol'], get_format_params(coin_info['name'], currency, coin_info['quotes'][currency])) for coin_info in r.json()['data'].values()])
         for coin_symbol in tracked_coins:
+            if coin_symbol not in coin_dict:
+                print('{} not found in config file.'.format(coin_symbol))
+                continue
             print('{}: {}${} (1h change: {}%, 24h change: {}%)'.format(*coin_dict[coin_symbol]))
     else:
         print('Error code {}: Unable to get information.'.format(str(r.status_code)))
