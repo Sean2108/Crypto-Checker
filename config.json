@@ -1,4 +1,8 @@
 {
-    "tracked_coins": ["BTC", "ETH"],
-    "currency": "SGD"
+    "tracked_coins": [
+        {"ticker": "BTC"}, 
+        {"ticker": "ETH", "notes": "ETH to the moon"}, 
+        {"ticker": "XLM"}
+    ],
+    "currency": "USD"
 }
