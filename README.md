@@ -1,4 +1,5 @@
-# Crypto-Checker
+# Crypto-Checker (No longer working, API was deprecated)
+
 Python script to check price for selected portfolio from CoinMarketCap. Requires requests.
 
 To use, edit config.json so that it contains the symbols of the coins in your portfolio in 'tracked_coins' (eg. BTC, ETH), and your desired currency in 'currency'.
